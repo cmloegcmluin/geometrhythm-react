@@ -1,0 +1,23 @@
+{
+  "name": "geometrhythm-react",
+  "version": "1.0.0",
+  "description": "A rewrite of Geometrhythm, now with more React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmloegcmluin/geometrhythm-react.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cmloegcmluin/geometrhythm-react/issues"
+  },
+  "homepage": "https://github.com/cmloegcmluin/geometrhythm-react#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
