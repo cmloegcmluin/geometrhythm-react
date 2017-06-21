@@ -2,9 +2,10 @@
   "name": "geometrhythm-react",
   "version": "1.0.0",
   "description": "A rewrite of Geometrhythm, now with more React.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --inline --hot --content-base dist"
   },
   "repository": {
     "type": "git",
@@ -16,8 +17,13 @@
     "url": "https://github.com/cmloegcmluin/geometrhythm-react/issues"
   },
   "homepage": "https://github.com/cmloegcmluin/geometrhythm-react#readme",
-  "dependencies": {
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-react": "^6.24.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }

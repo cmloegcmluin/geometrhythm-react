@@ -61,3 +61,6 @@ typings/
 
 # IntelliJ
 .idea
+
+dist
+!dist/index.html
