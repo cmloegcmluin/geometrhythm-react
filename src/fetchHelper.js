@@ -1,5 +1,5 @@
 const fetch = () => {}
 
-export default {
+export {
     fetch
 }
