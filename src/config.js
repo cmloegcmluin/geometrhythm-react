@@ -1,3 +1,3 @@
 export default {
-    geometrhythmApiBaseUrl: 'http://my-api.com'
-}
+  geometrhythmApiBaseUrl: 'http://my-api.com',
+};
