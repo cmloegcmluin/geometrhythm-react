@@ -5,6 +5,8 @@
     "jest": false,
     "test": false,
     "expect": false,
-    "document": false
+    "document": false,
+    "beforeEach": false,
+    "describe": false
   }
 }

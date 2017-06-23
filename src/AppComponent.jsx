@@ -1,9 +1,11 @@
 import React from 'react';
+import HeaderComponent from './HeaderComponent';
+import WidgetComponent from './WidgetComponent';
 
 const AppComponent = () => (
   <main>
-    <section data-id="header" />
-    <section data-id="widget" />
+    <HeaderComponent />
+    <WidgetComponent />
     <section data-id="analysis" />
   </main>
 );

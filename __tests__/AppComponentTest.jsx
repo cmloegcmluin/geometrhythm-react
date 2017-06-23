@@ -1,11 +1,24 @@
 const React = require('react');
 const { shallow } = require('enzyme');
 const AppComponent = require('../src/AppComponent').default;
+const HeaderComponent = require('../src/HeaderComponent').default;
+const WidgetComponent = require('../src/WidgetComponent').default;
 
-test('renders a header, widget, and analysis', () => {
-  const app = shallow(<AppComponent />);
+let app;
+beforeEach(() => {
+  app = shallow(<AppComponent />);
+});
 
-  expect(app.find('[data-id="header"]').length).toBe(1);
-  expect(app.find('[data-id="widget"]').length).toBe(1);
-  expect(app.find('[data-id="analysis"]').length).toBe(1);
+describe('render', () => {
+  test('renders an analysis', () => {
+    expect(app.find('[data-id="analysis"]').length).toBe(1);
+  });
+
+  test('renders a HeaderComponent', () => {
+    expect(app.find(HeaderComponent).length).toBe(1);
+  });
+
+  test('renders a WidgetComponent', () => {
+    expect(app.find(WidgetComponent).length).toBe(1);
+  });
 });

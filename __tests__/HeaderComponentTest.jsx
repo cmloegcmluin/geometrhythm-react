@@ -5,16 +5,22 @@ jest.mock('../src/fetchHelper');
 const fetchHelper = require('../src/fetchHelper').default;
 const HeaderComponent = require('../src/HeaderComponent').default;
 
-test('renders', () => {
-  const wrapper = shallow(<HeaderComponent />);
-
-  expect(wrapper.find('[data-id="title"]').length).toEqual(1);
+beforeEach(() => {
+  fetchHelper.fetch.mockReset();
 });
 
-test('calls api', () => {
-  fetchHelper.fetch.mockReset();
+describe('render', () => {
+  test('renders a title', () => {
+    const wrapper = shallow(<HeaderComponent />);
 
-  shallow(<HeaderComponent />);
+    expect(wrapper.find('[data-id="title"]').length).toEqual(1);
+  });
+});
 
-  expect(fetchHelper.fetch.mock.calls.length).toBe(1);
+describe('fetching data', () => {
+  test('calls api', () => {
+    shallow(<HeaderComponent />);
+
+    expect(fetchHelper.fetch.mock.calls.length).toBe(1);
+  });
 });
