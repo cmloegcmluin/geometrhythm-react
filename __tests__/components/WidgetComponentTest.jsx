@@ -1,6 +1,6 @@
 const React = require('react');
 const { shallow } = require('enzyme');
-const WidgetComponent = require('../src/WidgetComponent').default;
+const WidgetComponent = require('../../src/components/WidgetComponent').default;
 
 describe('render', () => {
   test('renders a message', () => {

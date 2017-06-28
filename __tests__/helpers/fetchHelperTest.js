@@ -1,4 +1,4 @@
-const fetchHelper = require('../src/fetchHelper').default;
+const fetchHelper = require('../../src/helpers/fetchHelper').default;
 
 test('fetch helper thinly wraps native fetch', () => {
   const mockFetch = jest.fn();

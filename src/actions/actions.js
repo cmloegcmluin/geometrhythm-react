@@ -1,4 +1,4 @@
-import fetchHelper from './fetchHelper';
+import fetchHelper from '../helpers/fetchHelper';
 
 export const types = {
   UPDATE_ANALYSIS: 'UPDATE_ANALYSIS',

@@ -5,8 +5,8 @@ describe('index', () => {
       createStore: () => ({ dispatch: mockDispatch }),
     }));
 
-    jest.mock('../src/actions').default;
-    const actions = require('../src/actions').default;
+    jest.mock('../src/actions/actions').default;
+    const actions = require('../src/actions/actions').default;
 
     const initialAction = { type: 'TYPE', data: 'data' };
     actions.initialFetch.mockReturnValue(initialAction);

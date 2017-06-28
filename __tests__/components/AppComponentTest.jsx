@@ -1,8 +1,8 @@
 const React = require('react');
 const { shallow } = require('enzyme');
-const AppComponent = require('../src/AppComponent').default;
-const HeaderComponent = require('../src/HeaderComponent').default;
-const WidgetComponent = require('../src/WidgetComponent').default;
+const AppComponent = require('../../src/components/AppComponent').default;
+const HeaderComponent = require('../../src/components/HeaderComponent').default;
+const WidgetComponent = require('../../src/components/WidgetComponent').default;
 
 let app;
 beforeEach(() => {

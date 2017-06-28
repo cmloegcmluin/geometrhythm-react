@@ -2,13 +2,13 @@ describe('actions', () => {
   test('initial fetch', () => {
     const mockDispatch = jest.fn();
     const analysis = { tallness: 4 };
-    jest.mock('../src/fetchHelper').default;
-    const fetchHelper = require('../src/fetchHelper').default;
+    jest.mock('../../src/helpers/fetchHelper').default;
+    const fetchHelper = require('../../src/helpers/fetchHelper').default;
     fetchHelper.fetch.mockReturnValue(Promise.resolve(analysis));
 
 
-    const actions = require('../src/actions').default;
-    const { UPDATE_ANALYSIS } = require('../src/actions').types;
+    const actions = require('../../src/actions/actions').default;
+    const { UPDATE_ANALYSIS } = require('../../src/actions/actions').types;
 
 
     return actions.initialFetch()(mockDispatch)

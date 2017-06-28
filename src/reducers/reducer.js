@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { types } from './actions';
+import { types } from '../actions/actions';
 
 export default (state = Map({}), action) => {
   switch (action.type) {

@@ -1,6 +1,6 @@
 const React = require('react');
 const { shallow } = require('enzyme');
-const HeaderComponent = require('../src/HeaderComponent').default;
+const HeaderComponent = require('../../src/components/HeaderComponent').default;
 
 describe('render', () => {
   test('renders a title', () => {

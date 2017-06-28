@@ -1,5 +1,5 @@
-const { UPDATE_ANALYSIS, UPDATE_RHYTHM } = require('../src/actions').types;
-const reducer = require('../src/reducer').default;
+const { UPDATE_ANALYSIS, UPDATE_RHYTHM } = require('../../src/actions/actions').types;
+const reducer = require('../../src/reducers/reducer').default;
 const Map = require('immutable').Map;
 
 describe('reducer', () => {

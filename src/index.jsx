@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
-import AppComponent from './AppComponent';
-import actions from './actions';
+import AppComponent from './components/AppComponent';
+import actions from './actions/actions';
 
 const store = createStore();
 const root = document.createElement('div');
