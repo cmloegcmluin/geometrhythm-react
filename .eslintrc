@@ -8,5 +8,8 @@
     "document": false,
     "beforeEach": false,
     "describe": false
+  },
+  "rules": {
+    "global-require": 0
   }
 }

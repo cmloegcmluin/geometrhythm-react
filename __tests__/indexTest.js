@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 describe('index', () => {
   test('fetches initial complexity data', () => {
     const mockDispatch = jest.fn();
@@ -7,13 +5,17 @@ describe('index', () => {
       createStore: () => ({ dispatch: mockDispatch }),
     }));
 
+    jest.mock('../src/actions').default;
+    const actions = require('../src/actions').default;
+
+    const initialAction = { type: 'TYPE', data: 'data' };
+    actions.initialFetch.mockReturnValue(initialAction);
+
 
     require('../src/index');
 
 
-    expect(mockDispatch.mock.calls[0][0]).toEqual({
-      type: 'INITIAL_DATA_FETCH',
-      data: 'x--x--x---x-x---',
-    });
+    expect(actions.initialFetch.mock.calls.length).toEqual(1);
+    expect(mockDispatch.mock.calls[0][0]).toEqual(initialAction);
   });
 });
