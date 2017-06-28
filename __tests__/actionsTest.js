@@ -8,6 +8,7 @@ describe('actions', () => {
 
 
     const actions = require('../src/actions').default;
+    const { UPDATE_ANALYSIS } = require('../src/actions').types;
 
 
     return actions.initialFetch()(mockDispatch)
@@ -15,7 +16,7 @@ describe('actions', () => {
         expect(fetchHelper.fetch.mock.calls.length).toEqual(1);
         expect(mockDispatch.mock.calls.length).toEqual(1);
         expect(mockDispatch.mock.calls[0][0]).toEqual({
-          type: 'UPDATE_ANALYSIS',
+          type: UPDATE_ANALYSIS,
           data: analysis,
         });
       });
