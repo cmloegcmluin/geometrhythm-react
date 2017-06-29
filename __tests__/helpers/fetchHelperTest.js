@@ -1,3 +1,5 @@
+beforeEach(() => jest.resetModules());
+
 const fetchHelper = require('../../src/helpers/fetchHelper').default;
 
 test('fetch helper thinly wraps native fetch', () => {

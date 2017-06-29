@@ -1,3 +1,5 @@
+beforeEach(() => jest.resetModules());
+
 describe('actions', () => {
   test('initial fetch', () => {
     const mockDispatch = jest.fn();

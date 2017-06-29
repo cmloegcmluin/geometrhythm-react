@@ -1,3 +1,5 @@
+beforeEach(() => jest.resetModules());
+
 const React = require('react');
 const { shallow } = require('enzyme');
 const HeaderComponent = require('../../src/components/HeaderComponent').default;
