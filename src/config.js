@@ -1,3 +1,3 @@
 export default {
-  geometrhythmApiBaseUrl: 'http://my-api.com',
+  geometrhythmApiBaseUrl: process.env.production ? 'https://geometrhythm-api.cfapps.io' : 'http://localhost:3000',
 };
