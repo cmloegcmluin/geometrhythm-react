@@ -3,23 +3,31 @@ beforeEach(() => jest.resetModules());
 describe('index', () => {
   test('constructs the store with the reducer', () => {
     const mockCreateStore = jest.fn().mockReturnValue({ dispatch: () => {}});
+    const mockApplyMiddlewareReturn = 'applyMiddlewareReturn';
+    const mockApplyMiddleware = jest.fn().mockReturnValue(mockApplyMiddlewareReturn);
     jest.mock('redux', () => ({
       createStore: mockCreateStore,
+      applyMiddleware: mockApplyMiddleware,
     }));
+
     const redux = require('redux');
     const reducer = require('../src/reducers/reducer').default;
+    const thunk = require('redux-thunk').default;
 
 
     require('../src/index');
 
 
-    expect(mockCreateStore.mock.calls[0][0]).toEqual(reducer)
+    expect(mockCreateStore.mock.calls[0][0]).toEqual(reducer);
+    expect(mockCreateStore.mock.calls[0][1]).toEqual(mockApplyMiddlewareReturn);
+    expect(mockApplyMiddleware.mock.calls[0][0]).toEqual(thunk);
   });
 
   test('fetches initial complexity data', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
       createStore: () => ({ dispatch: mockDispatch }),
+      applyMiddleware: () => {}
     }));
 
     jest.mock('../src/actions/actions').default;
