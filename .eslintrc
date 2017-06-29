@@ -12,6 +12,7 @@
   "rules": {
     "global-require": 0,
     "no-unused-expressions": 0,
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "arrow-body-style": 0
   }
 }

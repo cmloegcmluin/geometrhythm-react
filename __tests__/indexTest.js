@@ -1,14 +1,14 @@
 beforeEach(() => jest.resetModules());
 
 describe('index', () => {
-  let noop;
+  let mockNoOp;
   beforeEach(() => {
-    noop = () => {};
+    mockNoOp = () => {};
   });
 
   test('constructs the store with the reducer', () => {
     const mockCreateStore = jest.fn().mockReturnValue({
-      dispatch: noop,
+      dispatch: mockNoOp,
     });
     const mockApplyMiddlewareReturn = 'applyMiddlewareReturn';
     const mockApplyMiddleware = jest.fn().mockReturnValue(mockApplyMiddlewareReturn);
@@ -29,24 +29,25 @@ describe('index', () => {
     expect(mockApplyMiddleware.mock.calls[0][0]).toEqual(thunk);
   });
 
-  test('fetches initial complexity data', () => {
+  test('fetches analysis for default rhythm', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
       createStore: () => ({ dispatch: mockDispatch }),
-      applyMiddleware: noop,
+      applyMiddleware: mockNoOp,
     }));
 
     jest.mock('../src/actions/actions').default;
     const actions = require('../src/actions/actions').default;
 
     const initialAction = { type: 'TYPE', data: 'data' };
-    actions.initialFetch.mockReturnValue(initialAction);
+    actions.fetchRhythmAnalysis.mockReturnValue(initialAction);
 
 
     require('../src/index');
 
 
-    expect(actions.initialFetch.mock.calls.length).toEqual(1);
+    expect(actions.fetchRhythmAnalysis.mock.calls.length).toEqual(1);
+    expect(actions.fetchRhythmAnalysis.mock.calls[0][0]).toBe('x--x--x---x-x---');
     expect(mockDispatch.mock.calls[0][0]).toEqual(initialAction);
   });
 });
