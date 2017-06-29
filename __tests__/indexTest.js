@@ -1,8 +1,15 @@
 beforeEach(() => jest.resetModules());
 
 describe('index', () => {
+  let noop;
+  beforeEach(() => {
+    noop = () => {};
+  });
+
   test('constructs the store with the reducer', () => {
-    const mockCreateStore = jest.fn().mockReturnValue({ dispatch: () => {}});
+    const mockCreateStore = jest.fn().mockReturnValue({
+      dispatch: noop,
+    });
     const mockApplyMiddlewareReturn = 'applyMiddlewareReturn';
     const mockApplyMiddleware = jest.fn().mockReturnValue(mockApplyMiddlewareReturn);
     jest.mock('redux', () => ({
@@ -10,7 +17,6 @@ describe('index', () => {
       applyMiddleware: mockApplyMiddleware,
     }));
 
-    const redux = require('redux');
     const reducer = require('../src/reducers/reducer').default;
     const thunk = require('redux-thunk').default;
 
@@ -27,7 +33,7 @@ describe('index', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
       createStore: () => ({ dispatch: mockDispatch }),
-      applyMiddleware: () => {}
+      applyMiddleware: noop,
     }));
 
     jest.mock('../src/actions/actions').default;
