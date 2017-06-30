@@ -9,6 +9,7 @@ describe('index', () => {
   test('constructs the store with the reducer', () => {
     const mockCreateStore = jest.fn().mockReturnValue({
       dispatch: mockNoOp,
+      subscribe: mockNoOp,
     });
     const mockApplyMiddlewareReturn = 'applyMiddlewareReturn';
     const mockApplyMiddleware = jest.fn().mockReturnValue(mockApplyMiddlewareReturn);
@@ -32,7 +33,10 @@ describe('index', () => {
   test('fetches analysis for default rhythm', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
-      createStore: () => ({ dispatch: mockDispatch }),
+      createStore: () => ({
+        dispatch: mockDispatch,
+        subscribe: mockNoOp,
+      }),
       applyMiddleware: mockNoOp,
     }));
 

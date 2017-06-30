@@ -9,8 +9,11 @@ export const types = {
 const fetchRhythmAnalysis = (rhythm) => {
   return (dispatch) => {
     return fetch(`${config.geometrhythmApiBaseUrl}/v1/rhythms/${rhythm}`, { method: 'GET', headers: {} })
-      .then((data) => {
-        return dispatch({ type: types.UPDATE_ANALYSIS, data });
+      .then((response) => {
+        return response.json();
+      })
+      .then((parsedData) => {
+        return dispatch({ type: types.UPDATE_ANALYSIS, data: parsedData });
       });
   };
 };
