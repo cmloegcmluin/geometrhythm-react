@@ -44,14 +44,14 @@ describe('index', () => {
     const actions = require('../src/actions/actions').default;
 
     const initialAction = { type: 'TYPE', data: 'data' };
-    actions.fetchRhythmAnalysis.mockReturnValue(initialAction);
+    actions.updateRhythm.mockReturnValue(initialAction);
 
 
     require('../src/index');
 
 
-    expect(actions.fetchRhythmAnalysis.mock.calls.length).toEqual(1);
-    expect(actions.fetchRhythmAnalysis.mock.calls[0][0]).toBe('x--x--x---x-x---');
+    expect(actions.updateRhythm.mock.calls.length).toEqual(1);
+    expect(actions.updateRhythm.mock.calls[0][0]).toBe('x--x--x---x-x---');
     expect(mockDispatch.mock.calls[0][0]).toEqual(initialAction);
   });
 });

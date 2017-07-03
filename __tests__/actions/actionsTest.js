@@ -1,7 +1,7 @@
 beforeEach(() => jest.resetModules());
 
 describe('actions', () => {
-  test('fetch rhythm analysis', () => {
+  test('update rhythm', () => {
     const nock = require('nock');
 
     const rhythm = 'xxx-xxx-x';
@@ -13,13 +13,19 @@ describe('actions', () => {
 
     const mockDispatch = jest.fn();
 
-    const actions = require('../../src/actions/actions').default;
-    const { UPDATE_ANALYSIS } = require('../../src/actions/actions').types;
+    const updateRhythm = require('../../src/actions/actions').default.updateRhythm;
+    const { UPDATE_ANALYSIS, UPDATE_RHYTHM } = require('../../src/actions/actions').types;
 
-    return actions.fetchRhythmAnalysis(rhythm)(mockDispatch)
+    return updateRhythm(rhythm)(mockDispatch)
       .then(() => {
-        expect(mockDispatch.mock.calls.length).toEqual(1);
+        expect(mockDispatch.mock.calls.length).toEqual(2);
+
         expect(mockDispatch.mock.calls[0][0]).toEqual({
+          type: UPDATE_RHYTHM,
+          data: rhythm,
+        });
+
+        expect(mockDispatch.mock.calls[1][0]).toEqual({
           type: UPDATE_ANALYSIS,
           data: analysis,
         });

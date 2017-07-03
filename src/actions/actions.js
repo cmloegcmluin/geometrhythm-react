@@ -6,18 +6,24 @@ export const types = {
   UPDATE_RHYTHM: 'UPDATE_RHYTHM',
 };
 
-const fetchRhythmAnalysis = (rhythm) => {
+const fetchAnalysis = (dispatch, rhythm) => {
+  return fetch(`${config.GEOMETRHYTHM_API_BASE_URL}/v1/rhythms/${rhythm}`, { method: 'GET', headers: {} })
+    .then((response) => {
+      return response.json();
+    })
+    .then((parsedData) => {
+      return dispatch({ type: types.UPDATE_ANALYSIS, data: parsedData });
+    });
+};
+
+const updateRhythm = (rhythm) => {
   return (dispatch) => {
-    return fetch(`${config.GEOMETRHYTHM_API_BASE_URL}/v1/rhythms/${rhythm}`, { method: 'GET', headers: {} })
-      .then((response) => {
-        return response.json();
-      })
-      .then((parsedData) => {
-        return dispatch({ type: types.UPDATE_ANALYSIS, data: parsedData });
-      });
+    dispatch({ type: types.UPDATE_RHYTHM, data: rhythm });
+
+    return fetchAnalysis(dispatch, rhythm);
   };
 };
 
 export default {
-  fetchRhythmAnalysis,
+  updateRhythm,
 };

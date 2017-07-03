@@ -19,5 +19,4 @@ store.subscribe(() => {
   );
 });
 
-
-store.dispatch(actions.fetchRhythmAnalysis(config.DEFAULT_RHYTHM));
+store.dispatch(actions.updateRhythm(config.DEFAULT_RHYTHM));
