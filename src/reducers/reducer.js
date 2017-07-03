@@ -1,7 +1,12 @@
 import { Map as ImmutableMap } from 'immutable';
 import { types } from '../actions/actions';
+import config from '../config';
 
-export default (state = ImmutableMap(), action) => {
+const initialState = ImmutableMap({
+  rhythm: config.DEFAULT_RHYTHM,
+});
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case types.UPDATE_RHYTHM: {
       return state.set('rhythm', action.data);

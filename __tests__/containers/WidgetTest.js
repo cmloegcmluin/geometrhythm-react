@@ -14,20 +14,16 @@ describe('widget', () => {
     const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
     const presenter = container.find(WidgetPresenter);
-    expect(presenter.props().rhythmLength).toBe(undefined);
+    expect(presenter.props().rhythm).toBe(undefined);
   });
 
   test('mapStateToProps() returns updated state', () => {
-    const initialState = ImmutableMap({
-      analysis: {
-        rhythmLength: 15,
-      },
-    });
+    const initialState = ImmutableMap({ rhythm: 'x----x--' });
 
     const store = configureStore()(initialState);
     const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
     const presenter = container.find(WidgetPresenter);
-    expect(presenter.props().rhythmLength).toBe(15);
+    expect(presenter.props().rhythm).toBe('x----x--');
   });
 });

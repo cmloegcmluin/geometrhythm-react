@@ -7,8 +7,7 @@ import thunk from 'redux-thunk';
 import App from './containers/App';
 import actions from './actions/actions';
 import reducer from './reducers/reducer';
-
-const DEFAULT_RHYTHM = 'x--x--x---x-x---';
+import config from './config';
 
 const store = createStore(reducer, applyMiddleware(thunk));
 const root = document.createElement('div');
@@ -21,4 +20,4 @@ store.subscribe(() => {
 });
 
 
-store.dispatch(actions.fetchRhythmAnalysis(DEFAULT_RHYTHM));
+store.dispatch(actions.fetchRhythmAnalysis(config.DEFAULT_RHYTHM));

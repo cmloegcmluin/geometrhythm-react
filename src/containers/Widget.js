@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import WidgetPresenter from '../presenters/WidgetPresenter';
 
-const mapStateToProps = (state) => {
-  const rhythmLength = state.has('analysis') ? state.get('analysis').rhythmLength : undefined;
-  return { rhythmLength };
-};
+const mapStateToProps = (state) => ({ rhythm: state.get('rhythm') });
 
 export default connect(mapStateToProps)(WidgetPresenter);

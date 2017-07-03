@@ -8,7 +8,7 @@ export const types = {
 
 const fetchRhythmAnalysis = (rhythm) => {
   return (dispatch) => {
-    return fetch(`${config.geometrhythmApiBaseUrl}/v1/rhythms/${rhythm}`, { method: 'GET', headers: {} })
+    return fetch(`${config.GEOMETRHYTHM_API_BASE_URL}/v1/rhythms/${rhythm}`, { method: 'GET', headers: {} })
       .then((response) => {
         return response.json();
       })
