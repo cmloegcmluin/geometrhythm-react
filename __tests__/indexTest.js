@@ -40,7 +40,7 @@ describe('index', () => {
       applyMiddleware: mockNoOp,
     }));
 
-    jest.mock('../src/actions/actions').default;
+    jest.mock('../src/actions/actions');
     const actions = require('../src/actions/actions').default;
 
     const initialAction = { type: 'TYPE', data: 'data' };

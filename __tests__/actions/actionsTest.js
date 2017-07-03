@@ -6,7 +6,7 @@ describe('actions', () => {
 
     const rhythm = 'xxx-xxx-x';
 
-    const analysis = { length: 9 };
+    const analysis = { rhythmLength: 9 };
     nock('http://localhost:3000')
       .get(`/v1/rhythms/${rhythm}`)
       .reply(200, JSON.stringify(analysis));
