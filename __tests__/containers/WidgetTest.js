@@ -2,10 +2,12 @@ const mount = require('enzyme').mount;
 const React = require('react');
 const Provider = require('react-redux').Provider;
 const configureStore = require('redux-mock-store').default;
+const ImmutableMap = require('immutable').Map;
+const thunk = require('redux-thunk').default;
+const nock = require('nock');
 const Widget = require('../../src/containers/Widget').default;
 const WidgetPresenter = require('../../src/presenters/WidgetPresenter').default;
 const Cell = require('../../src/components/Cell').default;
-const ImmutableMap = require('immutable').Map;
 const types = require('../../src/actions/actions').types;
 
 beforeEach(() => jest.resetModules());
@@ -30,9 +32,14 @@ describe('widget', () => {
   });
 
   test('mapDispatchToProps() returns a click handler for cells', () => {
+    nock('http://localhost:3000')
+      .get(/.*/g)
+      .reply(200, {});
+
+
     const initialState = ImmutableMap({ rhythm: 'x----x--' });
 
-    const store = configureStore()(initialState);
+    const store = configureStore([thunk])(initialState);
     const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
     const presenter = container.find(WidgetPresenter);

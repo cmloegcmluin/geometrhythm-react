@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import WidgetPresenter from '../presenters/WidgetPresenter';
-import { types } from '../actions/actions';
+import actions from '../actions/actions';
 
 
 const flipCellAtIndex = (rhythm, index) => {
@@ -16,10 +16,7 @@ const mapDispatchToProps = dispatch => ({
   flipRhythmCell: (rhythm, index) => {
     const modifiedRhythm = flipCellAtIndex(rhythm, index);
 
-    dispatch({
-      type: types.UPDATE_RHYTHM,
-      data: modifiedRhythm,
-    });
+    dispatch(actions.updateRhythm(modifiedRhythm));
   },
 });
 
