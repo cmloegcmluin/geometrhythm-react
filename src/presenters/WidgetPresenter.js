@@ -1,22 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Cell from '../components/Cell';
 
-const WidgetPresenter = ({ rhythm }) => {
-  let cells = '';
+function mapRhythmToCells(rhythm, flipRhythmCell) {
+  let rhythmicCells;
 
   if (rhythm && rhythm.length) {
-    cells = rhythm.split('').map((cell, key) => {
+    rhythmicCells = rhythm.split('').map((rhythmCell, key) => {
+      const cellProps = {
+        index: key,
+        flipRhythmCell,
+        key,
+        rhythm,
+        rhythmCell,
+      };
+
       return (
-        <li {...{ key }}>
-          {cell}
-        </li>
+        <Cell {...cellProps} />
       );
     });
   }
 
+  return rhythmicCells;
+}
+
+const WidgetPresenter = ({ rhythm, flipRhythmCell }) => {
+  const rhythmicCells = mapRhythmToCells(rhythm, flipRhythmCell);
+
   return (
     <ol>
-      { cells }
+      { rhythmicCells }
     </ol>
   );
 };

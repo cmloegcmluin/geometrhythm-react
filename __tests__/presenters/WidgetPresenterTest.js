@@ -1,8 +1,9 @@
 beforeEach(() => jest.resetModules());
 
 const React = require('react');
-const { shallow } = require('enzyme');
+const { mount } = require('enzyme');
 const WidgetPresenter = require('../../src/presenters/WidgetPresenter').default;
+const Cell = require('../../src/components/Cell').default;
 
 describe('render', () => {
   test('renders the rhythm x----x--', () => {
@@ -10,9 +11,9 @@ describe('render', () => {
       rhythm: 'x----x--',
     };
 
-    const wrapper = shallow(<WidgetPresenter {...props} />);
+    const wrapper = mount(<WidgetPresenter {...props} />);
 
-    const cells = wrapper.find('li');
+    const cells = wrapper.find(Cell);
     expect(cells.at(0).text()).toBe('x');
     expect(cells.at(1).text()).toBe('-');
     expect(cells.at(2).text()).toBe('-');
@@ -26,9 +27,22 @@ describe('render', () => {
   test('renders even with an undefined rhythm', () => {
     const props = {};
 
-    const wrapper = shallow(<WidgetPresenter {...props} />);
+    const wrapper = mount(<WidgetPresenter {...props} />);
 
-    const cells = wrapper.find('li');
+    const cells = wrapper.find(Cell);
     expect(cells.length).toBe(0);
+  });
+
+  test('passes the right props on to each cell', () => {
+    const props = {
+      flipRhythmCell: jest.fn(),
+      rhythm: 'x----x--',
+    };
+
+    const wrapper = mount(<WidgetPresenter {...props} />);
+
+    const cell = wrapper.find(Cell).at(0);
+    expect(cell.props().flipRhythmCell).toBe(props.flipRhythmCell);
+    expect(cell.props().rhythm).toBe(props.rhythm);
   });
 });
