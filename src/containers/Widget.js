@@ -12,8 +12,7 @@ const flipCellAtIndex = (rhythm, index) => {
 const mapStateToProps = state => ({ rhythm: state.get('rhythm') });
 
 const mapDispatchToProps = dispatch => ({
-
-  flipRhythmCell: (rhythm, index) => {
+  flipCell: (rhythm, index) => {
     const modifiedRhythm = flipCellAtIndex(rhythm, index);
 
     dispatch(actions.updateRhythm(modifiedRhythm));

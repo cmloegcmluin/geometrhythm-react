@@ -3,20 +3,27 @@ const React = require('react');
 const Cell = require('../../src/components/Cell').default;
 
 describe('cell', () => {
-  test('shows the rhythm cell as text', () => {
-    const rhythmCell = 'x';
-    const wrapper = shallow(<Cell {...{ rhythmCell }} />);
+  test('shows the rhythm cell as an \'x\' when it is an onset', () => {
+    const isOnset = true;
+    const wrapper = shallow(<Cell {...{ isOnset }} />);
 
     expect(wrapper.text()).toBe('x');
   });
 
+  test('shows the rhythm cell as a \'-\' when it is not an onset', () => {
+    const isOnset = false;
+    const wrapper = shallow(<Cell {...{ isOnset }} />);
+
+    expect(wrapper.text()).toBe('-');
+  });
+
   test('flips the rhythm cell upon click', () => {
-    const flipRhythmCell = jest.fn();
+    const flipCell = jest.fn();
     const rhythm = 'x----x--';
     const index = 4;
-    const wrapper = shallow(<Cell {...{ flipRhythmCell, rhythm, index }} />);
+    const wrapper = shallow(<Cell {...{ flipCell, rhythm, index }} />);
 
     wrapper.simulate('click');
-    expect(flipRhythmCell).toHaveBeenCalledWith(rhythm, index);
+    expect(flipCell).toHaveBeenCalledWith(rhythm, index);
   });
 });

@@ -35,14 +35,14 @@ describe('render', () => {
 
   test('passes the right props on to each cell', () => {
     const props = {
-      flipRhythmCell: jest.fn(),
+      flipCell: jest.fn(),
       rhythm: 'x----x--',
     };
 
     const wrapper = mount(<WidgetPresenter {...props} />);
 
     const cell = wrapper.find(Cell).at(0);
-    expect(cell.props().flipRhythmCell).toBe(props.flipRhythmCell);
+    expect(cell.props().flipCell).toBe(props.flipCell);
     expect(cell.props().rhythm).toBe(props.rhythm);
   });
 });

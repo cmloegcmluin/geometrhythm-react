@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default ({ rhythm, rhythmCell, index, flipRhythmCell }) => {
-  const onClick = () => flipRhythmCell(rhythm, index);
+export default ({ rhythm, isOnset, index, flipCell }) => {
+  const onClick = () => flipCell(rhythm, index);
   return (
     <li {...{ onClick }}>
-      { rhythmCell }
+      { isOnset ? 'x' : '-' }
     </li>
   );
 };

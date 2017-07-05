@@ -43,10 +43,10 @@ describe('widget', () => {
     const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
     const presenter = container.find(WidgetPresenter);
-    const rhythmCell = presenter.find(Cell).at(5);
+    const cell = presenter.find(Cell).at(5);
 
 
-    rhythmCell.simulate('click');
+    cell.simulate('click');
 
 
     expect(store.getActions()[0]).toEqual({
