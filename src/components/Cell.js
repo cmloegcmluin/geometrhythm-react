@@ -9,6 +9,16 @@ const getStyle = (rhythm, index) => {
     transform: `rotate(${rotation}rad)`,
     transformOrigin: '200px 200px',
     position: 'absolute',
+    width: '20px',
+    height: '20px',
+  };
+};
+
+const getSvgProps = (isOnset) => {
+  return {
+    viewBox: '0 0 20 20',
+    stroke: 'black',
+    fill: isOnset ? 'black' : 'white',
   };
 };
 
@@ -17,9 +27,13 @@ export default ({ rhythm, isOnset, index, flipCell }) => {
 
   const style = getStyle(rhythm, index);
 
+  const svgProps = getSvgProps(isOnset);
+
   return (
     <div {...{ onClick, style }} >
-      { isOnset ? 'x' : '-' }
+      <svg {...svgProps}>
+        <circle {...{ cx: 10, cy: 10, r: 10 }} />
+      </svg>
     </div>
   );
 };

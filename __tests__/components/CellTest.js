@@ -7,18 +7,18 @@ describe('cell', () => {
   const rhythm = 'x----x--';
   const index = 4;
 
-  test('shows the rhythm cell as an \'x\' when it is an onset', () => {
+  test('shows a filled rhythm cell when it is an onset', () => {
     const isOnset = true;
     const wrapper = shallow(<Cell {...{ isOnset, rhythm, index }} />);
 
-    expect(wrapper.text()).toBe('x');
+    expect(wrapper.find('div svg').prop('fill')).toBe('black');
   });
 
-  test('shows the rhythm cell as a \'-\' when it is not an onset', () => {
+  test('shows an empty rhythm cell when it is not an onset', () => {
     const isOnset = false;
     const wrapper = shallow(<Cell {...{ isOnset, rhythm, index }} />);
 
-    expect(wrapper.text()).toBe('-');
+    expect(wrapper.find('div svg').prop('fill')).toBe('white');
   });
 
   test('flips the rhythm cell upon click', () => {
