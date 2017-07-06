@@ -27,10 +27,15 @@ function mapRhythmToCells(rhythm, flipCell) {
 const WidgetPresenter = ({ rhythm, flipCell }) => {
   const rhythmicCells = mapRhythmToCells(rhythm, flipCell);
 
+  const style = {
+    marginLeft: '100px',
+    marginTop: '100px',
+  };
+
   return (
-    <ol>
+    <div {...{ style }}>
       { rhythmicCells }
-    </ol>
+    </div>
   );
 };
 
