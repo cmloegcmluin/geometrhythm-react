@@ -6,7 +6,7 @@ const WidgetPresenter = require('../../src/presenters/WidgetPresenter').default;
 const Cell = require('../../src/components/Cell').default;
 
 describe('render', () => {
-  test('renders the rhythm x----x--', () => {
+  test('renders the correct number of cells for x----x--', () => {
     const props = {
       rhythm: 'x----x--',
     };
@@ -14,14 +14,7 @@ describe('render', () => {
     const wrapper = mount(<WidgetPresenter {...props} />);
 
     const cells = wrapper.find(Cell);
-    expect(cells.at(0).text()).toBe('x');
-    expect(cells.at(1).text()).toBe('-');
-    expect(cells.at(2).text()).toBe('-');
-    expect(cells.at(3).text()).toBe('-');
-    expect(cells.at(4).text()).toBe('-');
-    expect(cells.at(5).text()).toBe('x');
-    expect(cells.at(6).text()).toBe('-');
-    expect(cells.at(7).text()).toBe('-');
+    expect(cells.length).toBe(8);
   });
 
   test('renders even with an undefined rhythm', () => {
@@ -34,15 +27,21 @@ describe('render', () => {
   });
 
   test('passes the right props on to each cell', () => {
-    const props = {
+    const widgetProps = {
       flipCell: jest.fn(),
       rhythm: 'x----x--',
     };
 
-    const wrapper = mount(<WidgetPresenter {...props} />);
+    const wrapper = mount(<WidgetPresenter {...widgetProps} />);
 
-    const cell = wrapper.find(Cell).at(0);
-    expect(cell.props().flipCell).toBe(props.flipCell);
-    expect(cell.props().rhythm).toBe(props.rhythm);
+    const onsetCell = wrapper.find(Cell).at(0);
+    expect(onsetCell.props().flipCell).toBe(widgetProps.flipCell);
+    expect(onsetCell.props().rhythm).toBe(widgetProps.rhythm);
+    expect(onsetCell.props().isOnset).toBe(true);
+
+    const notOnsetCell = wrapper.find(Cell).at(1);
+    expect(notOnsetCell.props().flipCell).toBe(widgetProps.flipCell);
+    expect(notOnsetCell.props().rhythm).toBe(widgetProps.rhythm);
+    expect(notOnsetCell.props().isOnset).toBe(false);
   });
 });
