@@ -1,5 +1,4 @@
-const shallow = require('enzyme').shallow;
-const mount = require('enzyme').mount;
+const enzyme = require('enzyme');
 const React = require('react');
 const Cell = require('../../src/components/Cell').default;
 
@@ -9,21 +8,21 @@ describe('cell', () => {
 
   test('shows a filled rhythm cell when it is an onset', () => {
     const isOnset = true;
-    const wrapper = shallow(<Cell {...{ isOnset, rhythm, index }} />);
+    const wrapper = enzyme.shallow(<Cell {...{ isOnset, rhythm, index }} />);
 
     expect(wrapper.find('div svg').prop('fill')).toBe('black');
   });
 
   test('shows an empty rhythm cell when it is not an onset', () => {
     const isOnset = false;
-    const wrapper = shallow(<Cell {...{ isOnset, rhythm, index }} />);
+    const wrapper = enzyme.shallow(<Cell {...{ isOnset, rhythm, index }} />);
 
     expect(wrapper.find('div svg').prop('fill')).toBe('white');
   });
 
   test('flips the rhythm cell upon click', () => {
     const flipCell = jest.fn();
-    const wrapper = shallow(<Cell {...{ flipCell, rhythm, index }} />);
+    const wrapper = enzyme.shallow(<Cell {...{ flipCell, rhythm, index }} />);
 
     wrapper.simulate('click');
     expect(flipCell).toHaveBeenCalledWith(rhythm, index);
@@ -32,7 +31,7 @@ describe('cell', () => {
   describe('style', () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = mount(<Cell {...{ rhythm, index }} />);
+      wrapper = enzyme.mount(<Cell {...{ rhythm, index }} />);
     });
 
     test('calculates the correct rotation from the index and rhythm length', () => {

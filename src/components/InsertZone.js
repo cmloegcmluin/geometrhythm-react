@@ -6,6 +6,7 @@ const { RING_ROTATION_OFFSET_TO_START_AT_TOP } = widgetConstants;
 const getStyle = (rhythm, index) => {
   const rotation = ((2 * Math.PI * index) / rhythm.length)
                  + RING_ROTATION_OFFSET_TO_START_AT_TOP
+                 + (Math.PI / rhythm.length)
                  ;
 
   return {
@@ -18,26 +19,12 @@ const getStyle = (rhythm, index) => {
   };
 };
 
-const getSvgProps = (isOnset) => {
-  return {
-    viewBox: '0 0 20 20',
-    stroke: 'black',
-    fill: isOnset ? 'black' : 'white',
-  };
-};
-
-export default ({ rhythm, isOnset, index, flipCell }) => {
-  const onClick = () => flipCell(rhythm, index);
+export default ({ rhythm, index, insertCell }) => {
+  const onClick = () => insertCell();
 
   const style = getStyle(rhythm, index);
 
-  const svgProps = getSvgProps(isOnset);
-
   return (
-    <div {...{ onClick, style }} >
-      <svg {...svgProps}>
-        <circle {...{ cx: 10, cy: 10, r: 10 }} />
-      </svg>
-    </div>
+    <div {...{ onClick, style }} />
   );
 };

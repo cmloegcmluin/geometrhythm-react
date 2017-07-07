@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Cell from '../components/Cell';
+import InsertZone from '../components/InsertZone';
 
-function mapRhythmToCells(rhythm, flipCell) {
-  let cells;
+function mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell) {
+  const cellsAndInsertZones = [];
 
   if (rhythm && rhythm.length) {
-    cells = rhythm.split('').map((cell, key) => {
+    rhythm.split('').forEach((cell, key) => {
       const cellProps = {
         index: key,
         flipCell,
@@ -15,17 +16,28 @@ function mapRhythmToCells(rhythm, flipCell) {
         isOnset: cell === 'x',
       };
 
-      return (
-        <Cell {...cellProps} />
+      cellsAndInsertZones.push(
+        <Cell {...cellProps} />,
+      );
+
+      const insertZoneProps = {
+        index: key,
+        insertCell,
+        key: `insert-zone-${key}`,
+        rhythm,
+      };
+
+      cellsAndInsertZones.push(
+        <InsertZone {...insertZoneProps} />,
       );
     });
   }
 
-  return cells;
+  return cellsAndInsertZones;
 }
 
-const WidgetPresenter = ({ rhythm, flipCell }) => {
-  const rhythmicCells = mapRhythmToCells(rhythm, flipCell);
+const WidgetPresenter = ({ rhythm, flipCell, insertCell }) => {
+  const rhythmicCells = mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell);
 
   const style = {
     marginLeft: '100px',

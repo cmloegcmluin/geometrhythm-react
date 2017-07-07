@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
 
     dispatch(actions.updateRhythm(modifiedRhythm));
   },
+  insertCell: () => {},
 });
 
 
