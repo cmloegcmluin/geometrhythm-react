@@ -17,23 +17,26 @@ const fetchAnalysis = (dispatch, rhythm) => {
     });
 };
 
-const updateRhythm = (rhythm, reactKeys) => {
+const updateRhythmAndReactKeys = (rhythm, reactKeys) => {
   return (dispatch) => {
-    if (reactKeys) {
-      dispatch({
-        type: types.UPDATE_RHYTHM_AND_REACT_KEYS,
-        data: {
-          rhythm,
-          reactKeys,
-        },
-      });
-    }
-    else {
-      dispatch({
-        type: types.UPDATE_RHYTHM,
-        data: rhythm,
-      });
-    }
+    dispatch({
+      type: types.UPDATE_RHYTHM_AND_REACT_KEYS,
+      data: {
+        rhythm,
+        reactKeys,
+      },
+    });
+
+    return fetchAnalysis(dispatch, rhythm);
+  };
+};
+
+const updateRhythm = (rhythm) => {
+  return (dispatch) => {
+    dispatch({
+      type: types.UPDATE_RHYTHM,
+      data: rhythm,
+    });
 
     return fetchAnalysis(dispatch, rhythm);
   };
@@ -41,4 +44,5 @@ const updateRhythm = (rhythm, reactKeys) => {
 
 export default {
   updateRhythm,
+  updateRhythmAndReactKeys,
 };

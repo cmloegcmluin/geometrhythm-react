@@ -19,4 +19,4 @@ store.subscribe(() => {
   );
 });
 
-store.dispatch(actions.updateRhythm(config.DEFAULT_RHYTHM, config.DEFAULT_REACT_KEYS));
+store.dispatch(actions.updateRhythmAndReactKeys(config.DEFAULT_RHYTHM, config.DEFAULT_REACT_KEYS));

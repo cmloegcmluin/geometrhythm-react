@@ -5,7 +5,7 @@ const InsertZone = require('../../src/components/InsertZone').default;
 describe('insert zone', () => {
   const rhythm = 'x----x--';
   const index = 4;
-  const reactKeys = [ 1, 3, 4, 9, 0, 2, 7, 8 ];
+  const reactKeys = [1, 3, 4, 9, 0, 2, 7, 8];
 
   test('inserts a new rhythm cell upon click', () => {
     const insertCell = jest.fn();

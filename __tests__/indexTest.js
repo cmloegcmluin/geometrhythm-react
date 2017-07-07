@@ -30,7 +30,7 @@ describe('index', () => {
     expect(mockApplyMiddleware.mock.calls[0][0]).toEqual(thunk);
   });
 
-  test('calls update rhythm action', () => {
+  test('calls update rhythm and react keys action', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
       createStore: () => ({
@@ -44,15 +44,17 @@ describe('index', () => {
     const actions = require('../src/actions/actions').default;
 
     const initialAction = { type: 'TYPE', data: 'data' };
-    actions.updateRhythm.mockReturnValue(initialAction);
+    actions.updateRhythmAndReactKeys.mockReturnValue(initialAction);
 
 
     require('../src/index');
 
 
-    expect(actions.updateRhythm.mock.calls.length).toEqual(1);
-    expect(actions.updateRhythm.mock.calls[0][0]).toBe('x--x--x---x-x---');
-    expect(actions.updateRhythm.mock.calls[0][1]).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
+    expect(actions.updateRhythmAndReactKeys.mock.calls.length).toEqual(1);
+    expect(actions.updateRhythmAndReactKeys.mock.calls[0][0]).toBe('x--x--x---x-x---');
+    expect(actions.updateRhythmAndReactKeys.mock.calls[0][1]).toEqual(
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    );
     expect(mockDispatch.mock.calls[0][0]).toEqual(initialAction);
   });
 });

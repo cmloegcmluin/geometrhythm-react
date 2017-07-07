@@ -11,7 +11,7 @@ describe('render', () => {
     test('renders the correct number of cells', () => {
       const widgetProps = {
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
       };
 
       const wrapper = mount(<WidgetPresenter {...widgetProps} />);
@@ -23,7 +23,7 @@ describe('render', () => {
     test('passes the right props on to each cell', () => {
       const widgetProps = {
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
         flipCell: jest.fn(),
       };
 
@@ -49,7 +49,7 @@ describe('render', () => {
     test('renders the correct number of insert zones', () => {
       const widgetProps = {
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
       };
 
       const wrapper = mount(<WidgetPresenter {...widgetProps} />);
@@ -61,7 +61,7 @@ describe('render', () => {
     test('passes the right props on to each insert zone', () => {
       const widgetProps = {
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
         insertCell: jest.fn(),
       };
 

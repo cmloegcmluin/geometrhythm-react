@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
 
     const modifiedReactKeys = insertKeyAtIndex(reactKeys, index);
 
-    dispatch(actions.updateRhythm(modifiedRhythm, modifiedReactKeys));
+    dispatch(actions.updateRhythmAndReactKeys(modifiedRhythm, modifiedReactKeys));
   },
 });
 

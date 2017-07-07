@@ -26,7 +26,7 @@ describe('widget', () => {
     test('passes rhythm and keys to the presenter', () => {
       const initialState = ImmutableMap({
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
       });
 
       const store = configureStore()(initialState);
@@ -34,7 +34,7 @@ describe('widget', () => {
 
       const presenter = container.find(WidgetPresenter);
       expect(presenter.props().rhythm).toBe('x----x--');
-      expect(presenter.props().reactKeys).toEqual([ 1, 3, 4, 9, 0, 2, 7, 8 ]);
+      expect(presenter.props().reactKeys).toEqual([1, 3, 4, 9, 0, 2, 7, 8]);
     });
   });
 
@@ -46,7 +46,7 @@ describe('widget', () => {
 
       const initialState = ImmutableMap({
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
       });
 
       const store = configureStore([thunk])(initialState);
@@ -72,7 +72,7 @@ describe('widget', () => {
 
       const initialState = ImmutableMap({
         rhythm: 'x----x--',
-        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+        reactKeys: [1, 3, 4, 9, 0, 2, 7, 8],
       });
 
       const store = configureStore([thunk])(initialState);
@@ -89,7 +89,7 @@ describe('widget', () => {
         type: types.UPDATE_RHYTHM_AND_REACT_KEYS,
         data: {
           rhythm: 'x----x---',
-          reactKeys: [ 1, 3, 4, 9, 0, 2, 10, 7, 8 ],
+          reactKeys: [1, 3, 4, 9, 0, 2, 10, 7, 8],
         },
       });
     });
