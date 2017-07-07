@@ -30,7 +30,7 @@ describe('index', () => {
     expect(mockApplyMiddleware.mock.calls[0][0]).toEqual(thunk);
   });
 
-  test('fetches analysis for default rhythm', () => {
+  test('calls update rhythm action', () => {
     const mockDispatch = jest.fn();
     jest.mock('redux', () => ({
       createStore: () => ({
@@ -52,6 +52,7 @@ describe('index', () => {
 
     expect(actions.updateRhythm.mock.calls.length).toEqual(1);
     expect(actions.updateRhythm.mock.calls[0][0]).toBe('x--x--x---x-x---');
+    expect(actions.updateRhythm.mock.calls[0][1]).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
     expect(mockDispatch.mock.calls[0][0]).toEqual(initialAction);
   });
 });

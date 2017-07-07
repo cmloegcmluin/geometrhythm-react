@@ -15,7 +15,16 @@ const insertCellAtIndex = (rhythm, index) => {
   return splitRhythm.join('');
 };
 
-const mapStateToProps = state => ({ rhythm: state.get('rhythm') });
+const insertKeyAtIndex = (reactKeys, index) => {
+  const newKey = reactKeys.reduce((a, b) => Math.max(a, b)) + 1;
+  reactKeys.splice(index + 1, 0, newKey);
+  return reactKeys;
+};
+
+const mapStateToProps = state => ({
+  rhythm: state.get('rhythm'),
+  reactKeys: state.get('reactKeys'),
+});
 
 const mapDispatchToProps = dispatch => ({
   flipCell: (rhythm, index) => {
@@ -23,10 +32,12 @@ const mapDispatchToProps = dispatch => ({
 
     dispatch(actions.updateRhythm(modifiedRhythm));
   },
-  insertCell: (rhythm, index) => {
+  insertCell: (rhythm, index, reactKeys) => {
     const modifiedRhythm = insertCellAtIndex(rhythm, index);
 
-    dispatch(actions.updateRhythm(modifiedRhythm));
+    const modifiedReactKeys = insertKeyAtIndex(reactKeys, index);
+
+    dispatch(actions.updateRhythm(modifiedRhythm, modifiedReactKeys));
   },
 });
 

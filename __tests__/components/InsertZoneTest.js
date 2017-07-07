@@ -5,13 +5,14 @@ const InsertZone = require('../../src/components/InsertZone').default;
 describe('insert zone', () => {
   const rhythm = 'x----x--';
   const index = 4;
+  const reactKeys = [ 1, 3, 4, 9, 0, 2, 7, 8 ];
 
   test('inserts a new rhythm cell upon click', () => {
     const insertCell = jest.fn();
-    const wrapper = enzyme.shallow(<InsertZone {...{ insertCell, rhythm, index }} />);
+    const wrapper = enzyme.shallow(<InsertZone {...{ insertCell, rhythm, index, reactKeys }} />);
 
     wrapper.simulate('click');
-    expect(insertCell).toHaveBeenCalledWith(rhythm, index);
+    expect(insertCell).toHaveBeenCalledWith(rhythm, index, reactKeys);
   });
 
   describe('style', () => {

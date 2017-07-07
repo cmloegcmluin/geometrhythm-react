@@ -11,6 +11,7 @@ describe('render', () => {
     test('renders the correct number of cells', () => {
       const widgetProps = {
         rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
       };
 
       const wrapper = mount(<WidgetPresenter {...widgetProps} />);
@@ -22,6 +23,7 @@ describe('render', () => {
     test('passes the right props on to each cell', () => {
       const widgetProps = {
         rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
         flipCell: jest.fn(),
       };
 
@@ -32,12 +34,14 @@ describe('render', () => {
       expect(onsetCell.prop('rhythm')).toBe(widgetProps.rhythm);
       expect(onsetCell.prop('isOnset')).toBe(true);
       expect(onsetCell.prop('index')).toBe(0);
+      expect(Number(onsetCell.key())).toBe(widgetProps.reactKeys[0]);
 
       const notOnsetCell = wrapper.find(Cell).at(1);
       expect(notOnsetCell.prop('flipCell')).toBe(widgetProps.flipCell);
       expect(notOnsetCell.prop('rhythm')).toBe(widgetProps.rhythm);
       expect(notOnsetCell.prop('isOnset')).toBe(false);
       expect(notOnsetCell.prop('index')).toBe(1);
+      expect(Number(notOnsetCell.key())).toBe(widgetProps.reactKeys[1]);
     });
   });
 
@@ -45,6 +49,7 @@ describe('render', () => {
     test('renders the correct number of insert zones', () => {
       const widgetProps = {
         rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
       };
 
       const wrapper = mount(<WidgetPresenter {...widgetProps} />);
@@ -56,6 +61,7 @@ describe('render', () => {
     test('passes the right props on to each insert zone', () => {
       const widgetProps = {
         rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
         insertCell: jest.fn(),
       };
 
@@ -66,6 +72,8 @@ describe('render', () => {
       expect(insertZone.prop('insertCell')).toBe(widgetProps.insertCell);
       expect(insertZone.prop('rhythm')).toBe(widgetProps.rhythm);
       expect(insertZone.prop('index')).toBe(0);
+      expect(insertZone.prop('reactKeys')).toBe(widgetProps.reactKeys);
+      expect(insertZone.key()).toBe(`insert-zone-${widgetProps.reactKeys[0]}`);
     });
   });
 

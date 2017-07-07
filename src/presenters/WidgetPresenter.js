@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import Cell from '../components/Cell';
 import InsertZone from '../components/InsertZone';
 
-function mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell) {
+function mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell, reactKeys) {
   const cellsAndInsertZones = [];
 
   if (rhythm && rhythm.length) {
-    rhythm.split('').forEach((cell, key) => {
+    rhythm.split('').forEach((cell, index) => {
       const cellProps = {
-        index: key,
+        index,
         flipCell,
-        key,
+        key: reactKeys[index],
         rhythm,
         isOnset: cell === 'x',
       };
@@ -21,9 +21,10 @@ function mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell) {
       );
 
       const insertZoneProps = {
-        index: key,
+        index,
         insertCell,
-        key: `insert-zone-${key}`,
+        key: `insert-zone-${reactKeys[index]}`,
+        reactKeys,
         rhythm,
       };
 
@@ -36,8 +37,8 @@ function mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell) {
   return cellsAndInsertZones;
 }
 
-const WidgetPresenter = ({ rhythm, flipCell, insertCell }) => {
-  const rhythmicCells = mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell);
+const WidgetPresenter = ({ rhythm, flipCell, insertCell, reactKeys }) => {
+  const rhythmicCells = mapRhythmToCellsAndInsertZones(rhythm, flipCell, insertCell, reactKeys);
 
   const style = {
     marginLeft: '100px',

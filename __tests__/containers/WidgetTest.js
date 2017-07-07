@@ -15,7 +15,7 @@ beforeEach(() => jest.resetModules());
 
 describe('widget', () => {
   describe('mapStateToProps()', () => {
-    test('fails gracefully if desired state key is not present', () => {
+    test('fails gracefully if rhythm is not present', () => {
       const store = configureStore()(ImmutableMap());
       const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
@@ -23,14 +23,18 @@ describe('widget', () => {
       expect(presenter.props().rhythm).toBe(undefined);
     });
 
-    test('returns updated state', () => {
-      const initialState = ImmutableMap({ rhythm: 'x----x--' });
+    test('passes rhythm and keys to the presenter', () => {
+      const initialState = ImmutableMap({
+        rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+      });
 
       const store = configureStore()(initialState);
       const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
       const presenter = container.find(WidgetPresenter);
       expect(presenter.props().rhythm).toBe('x----x--');
+      expect(presenter.props().reactKeys).toEqual([ 1, 3, 4, 9, 0, 2, 7, 8 ]);
     });
   });
 
@@ -40,7 +44,10 @@ describe('widget', () => {
         .get(/.*/g)
         .reply(200, {});
 
-      const initialState = ImmutableMap({ rhythm: 'x----x--' });
+      const initialState = ImmutableMap({
+        rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+      });
 
       const store = configureStore([thunk])(initialState);
       const container = mount(<Provider {...{ store }}><Widget /></Provider>);
@@ -63,21 +70,27 @@ describe('widget', () => {
         .get(/.*/g)
         .reply(200, {});
 
-      const initialState = ImmutableMap({ rhythm: 'x----x--' });
+      const initialState = ImmutableMap({
+        rhythm: 'x----x--',
+        reactKeys: [ 1, 3, 4, 9, 0, 2, 7, 8 ],
+      });
 
       const store = configureStore([thunk])(initialState);
       const container = mount(<Provider {...{ store }}><Widget /></Provider>);
 
       const presenter = container.find(WidgetPresenter);
-      const cell = presenter.find(InsertZone).at(5);
+      const insertZone = presenter.find(InsertZone).at(5);
 
 
-      cell.simulate('click');
+      insertZone.simulate('click');
 
 
       expect(store.getActions()[0]).toEqual({
-        type: types.UPDATE_RHYTHM,
-        data: 'x----x---',
+        type: types.UPDATE_RHYTHM_AND_REACT_KEYS,
+        data: {
+          rhythm: 'x----x---',
+          reactKeys: [ 1, 3, 4, 9, 0, 2, 10, 7, 8 ],
+        },
       });
     });
   });
