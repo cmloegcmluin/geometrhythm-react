@@ -1,12 +1,8 @@
 import React from 'react';
-import widgetConstants from '../constants/widgetConstants';
-
-const { RING_ROTATION_OFFSET_TO_START_AT_TOP } = widgetConstants;
+import widget from '../models/widget';
 
 const getStyle = (rhythm, index) => {
-  const rotation = ((2 * Math.PI * index) / rhythm.length)
-                 + RING_ROTATION_OFFSET_TO_START_AT_TOP
-                 ;
+  const rotation = widget.calculateRotationForCell(index, rhythm);
 
   return {
     transform: `rotate(${rotation}rad)`,
