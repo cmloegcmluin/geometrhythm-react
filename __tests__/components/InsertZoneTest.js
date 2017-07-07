@@ -6,6 +6,14 @@ describe('insert zone', () => {
   const rhythm = 'x----x--';
   const index = 4;
 
+  test('inserts a new rhythm cell upon click', () => {
+    const insertCell = jest.fn();
+    const wrapper = enzyme.shallow(<InsertZone {...{ insertCell, rhythm, index }} />);
+
+    wrapper.simulate('click');
+    expect(insertCell).toHaveBeenCalledWith(rhythm, index);
+  });
+
   describe('style', () => {
     let wrapper;
     beforeEach(() => {

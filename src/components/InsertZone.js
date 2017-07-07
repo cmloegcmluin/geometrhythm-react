@@ -15,7 +15,7 @@ const getStyle = (rhythm, index) => {
 };
 
 export default ({ rhythm, index, insertCell }) => {
-  const onClick = () => insertCell();
+  const onClick = () => insertCell(rhythm, index);
 
   const style = getStyle(rhythm, index);
 
