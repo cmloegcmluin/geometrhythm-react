@@ -1,7 +1,9 @@
-const widget = require('../../src/models/widget').default;
+beforeEach(() => jest.resetModules());
 
 describe('widget', () => {
   describe('calculate rotation for cell', () => {
+    const widget = require('../../src/models/widget').default;
+
     test('subdivisions of 4', () => {
       expect(widget.calculateRotationForCell(0, 'x---')).toBe(((0 * 2 * Math.PI) / 4) + (Math.PI / 4));
       expect(widget.calculateRotationForCell(1, 'x---')).toBe(((1 * 2 * Math.PI) / 4) + (Math.PI / 4));
@@ -19,6 +21,8 @@ describe('widget', () => {
   });
 
   describe('calculate rotation for insert zone', () => {
+    const widget = require('../../src/models/widget').default;
+
     test('subdivisions of 4', () => {
       expect(widget.calculateRotationForInsertZone(0, 'x---')).toBe(((0 * 2 * Math.PI) / 4) + (Math.PI / 4) + (Math.PI / 4));
       expect(widget.calculateRotationForInsertZone(1, 'x---')).toBe(((1 * 2 * Math.PI) / 4) + (Math.PI / 4) + (Math.PI / 4));
@@ -32,6 +36,28 @@ describe('widget', () => {
       expect(widget.calculateRotationForInsertZone(2, 'x--x-')).toBe(((2 * 2 * Math.PI) / 5) + (Math.PI / 4) + (Math.PI / 5));
       expect(widget.calculateRotationForInsertZone(3, 'x--x-')).toBe(((3 * 2 * Math.PI) / 5) + (Math.PI / 4) + (Math.PI / 5));
       expect(widget.calculateRotationForInsertZone(4, 'x--x-')).toBe(((4 * 2 * Math.PI) / 5) + (Math.PI / 4) + (Math.PI / 5));
+    });
+  });
+
+  describe('flip cell', () => {
+    test('modifies rhythm and dispatches action', () => {
+      const updateRhythmAction = {};
+      const mockUpdateRhythm = jest.fn().mockReturnValue(updateRhythmAction);
+      jest.mock('../../src/actions/actions', () => ({
+        updateRhythm: mockUpdateRhythm,
+      }));
+
+      const mockDispatch = jest.fn();
+      const rhythm = 'x---x---';
+      const index = 4;
+
+      const widget = require('../../src/models/widget').default;
+      widget.flipCell(mockDispatch, rhythm, index);
+
+      const expectedModifiedRhythm = 'x-------';
+
+      expect(mockUpdateRhythm).toHaveBeenCalledWith(expectedModifiedRhythm);
+      expect(mockDispatch).toHaveBeenCalledWith(updateRhythmAction);
     });
   });
 });

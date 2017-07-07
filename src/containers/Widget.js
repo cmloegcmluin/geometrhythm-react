@@ -1,13 +1,9 @@
 import { connect } from 'react-redux';
 import WidgetPresenter from '../presenters/WidgetPresenter';
 import actions from '../actions/actions';
+import widget from '../models/widget'
 
-
-const flipCellAtIndex = (rhythm, index) => {
-  const splitRhythm = rhythm.split('');
-  splitRhythm[index] = splitRhythm[index] === 'x' ? '-' : 'x';
-  return splitRhythm.join('');
-};
+const { flipCell } = widget;
 
 const insertCellAtIndex = (rhythm, index) => {
   const splitRhythm = rhythm.split('');
@@ -27,11 +23,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  flipCell: (rhythm, index) => {
-    const modifiedRhythm = flipCellAtIndex(rhythm, index);
-
-    dispatch(actions.updateRhythm(modifiedRhythm));
-  },
+  flipCell: (rhythm, index) => flipCell(dispatch, rhythm, index),
   insertCell: (rhythm, index, reactKeys) => {
     const modifiedRhythm = insertCellAtIndex(rhythm, index);
 

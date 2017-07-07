@@ -11,6 +11,7 @@ const getStyle = (rhythm, index) => {
     width: '20px',
     height: '20px',
     cursor: 'pointer',
+    transition: 'transform 1s',
   };
 };
 
