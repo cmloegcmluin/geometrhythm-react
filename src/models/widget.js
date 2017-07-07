@@ -1,6 +1,4 @@
-import widgetConstants from '../constants/widgetConstants';
-
-const { RING_ROTATION_OFFSET_TO_START_AT_TOP } = widgetConstants;
+const RING_ROTATION_OFFSET_TO_START_AT_TOP = Math.PI / 4;
 
 const calculateRotationForCell = (index, rhythm) => {
   const rotation = ((2 * Math.PI * index) / rhythm.length)
