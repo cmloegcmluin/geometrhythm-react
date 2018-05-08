@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import WidgetPresenter from '../presenters/WidgetPresenter';
 import actions from '../actions/actions';
-import widget from '../models/widget'
+import widget from '../models/widget';
 
 const { flipCell } = widget;
 
