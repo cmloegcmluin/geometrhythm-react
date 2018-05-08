@@ -1,3 +1,5 @@
+import { WIDGET_DIAMETER } from '../../src/constants';
+
 const enzyme = require('enzyme');
 const React = require('react');
 const Cell = require('../../src/components/Cell').default;
@@ -46,7 +48,7 @@ describe('cell', () => {
     test('calculates the correct center of the rhythm ring', () => {
       expect(wrapper.find('div').prop('style')).toEqual(
         expect.objectContaining({
-          transformOrigin: '200px 200px',
+          transformOrigin: `${WIDGET_DIAMETER / 2}px ${WIDGET_DIAMETER / 2}px`,
         }),
       );
     });

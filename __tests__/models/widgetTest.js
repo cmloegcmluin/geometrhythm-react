@@ -1,3 +1,5 @@
+import { CELL_DIAMETER, WIDGET_DIAMETER } from '../../src/constants';
+
 beforeEach(() => jest.resetModules());
 
 describe('widget', () => {
@@ -43,6 +45,20 @@ describe('widget', () => {
       expect(widget.calculateRotationForInsertZone(2, 'x--x-')).toBe((2 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
       expect(widget.calculateRotationForInsertZone(3, 'x--x-')).toBe((3 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
       expect(widget.calculateRotationForInsertZone(4, 'x--x-')).toBe((4 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+    });
+  });
+
+  describe('calculate scale for insert zone', () => {
+    const widget = require('../../src/models/widget').default;
+
+    test('rhythm of length 4', () => {
+      const WIDGET_CIRCUMFERENCE = Math.PI * WIDGET_DIAMETER;
+      expect(widget.calculateScaleForInsertZone('x---')).toBe((WIDGET_CIRCUMFERENCE - (4 * CELL_DIAMETER)) / 4);
+    });
+
+    test('rhythm of length 5', () => {
+      const WIDGET_CIRCUMFERENCE = Math.PI * WIDGET_DIAMETER;
+      expect(widget.calculateScaleForInsertZone('x--x-')).toBe((WIDGET_CIRCUMFERENCE - (5 * CELL_DIAMETER)) / 5);
     });
   });
 

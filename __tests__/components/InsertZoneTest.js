@@ -1,3 +1,5 @@
+import { CELL_DIAMETER, WIDGET_DIAMETER } from '../../src/constants';
+
 const enzyme = require('enzyme');
 const React = require('react');
 const InsertZone = require('../../src/components/InsertZone').default;
@@ -30,10 +32,20 @@ describe('insert zone', () => {
       );
     });
 
+    test('calculates the correct scale from the rhythm length', () => {
+      const expectedScale = ((Math.PI * WIDGET_DIAMETER) - (8 * CELL_DIAMETER)) / 8;
+      expect(wrapper.find('div').prop('style')).toEqual(
+        expect.objectContaining({
+          width: `${expectedScale}px`,
+          height: `${expectedScale}px`,
+        }),
+      );
+    });
+
     test('calculates the correct center of the rhythm ring', () => {
       expect(wrapper.find('div').prop('style')).toEqual(
         expect.objectContaining({
-          transformOrigin: '200px 200px',
+          transformOrigin: `${WIDGET_DIAMETER / 2}px ${WIDGET_DIAMETER / 2}px`,
         }),
       );
     });

@@ -1,15 +1,16 @@
 import React from 'react';
 import widget from '../models/widget';
+import { CELL_DIAMETER, WIDGET_DIAMETER } from '../constants';
 
 const getStyle = (rhythm, index) => {
   const rotation = widget.calculateRotationForCell(index, rhythm);
 
   return {
     transform: `rotate(${rotation}rad)`,
-    transformOrigin: '200px 200px',
+    transformOrigin: `${WIDGET_DIAMETER / 2}px ${WIDGET_DIAMETER / 2}px`,
     position: 'absolute',
-    width: '20px',
-    height: '20px',
+    width: `${CELL_DIAMETER}px`,
+    height: `${CELL_DIAMETER}px`,
     cursor: 'pointer',
     transition: 'transform 1s',
   };

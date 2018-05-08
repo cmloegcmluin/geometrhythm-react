@@ -1,15 +1,17 @@
 import React from 'react';
 import widget from '../models/widget';
+import { WIDGET_DIAMETER } from '../constants';
 
 const getStyle = (rhythm, index) => {
   const rotation = widget.calculateRotationForInsertZone(index, rhythm);
+  const scale = widget.calculateScaleForInsertZone(rhythm);
 
   return {
     transform: `rotate(${rotation}rad)`,
-    transformOrigin: '200px 200px',
+    transformOrigin: `${WIDGET_DIAMETER / 2}px ${WIDGET_DIAMETER / 2}px`,
     position: 'absolute',
-    width: '20px',
-    height: '20px',
+    width: `${scale}px`,
+    height: `${scale}px`,
     cursor: 'pointer',
     transition: 'transform 1s',
   };
