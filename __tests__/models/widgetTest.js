@@ -4,7 +4,7 @@ beforeEach(() => jest.resetModules());
 
 describe('widget', () => {
   const RING_ROTATION_OFFSET_TO_START_AT_TOP = Math.PI / 4;
-  const FULL_CIRCUMFERENCE = 2 * Math.PI;
+  const RADIANS_PER_CIRCLE = 2 * Math.PI;
   const SUBDIVIDE_BY_FOUR = 1 / 4;
   const SUBDIVIDE_BY_FIVE = 1 / 5;
 
@@ -12,18 +12,18 @@ describe('widget', () => {
     const widget = require('../../src/models/widget').default;
 
     test('subdivisions of 4', () => {
-      expect(widget.calculateRotationForCell(0, 'x---')).toBe((0 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(1, 'x---')).toBe((1 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(2, 'x---')).toBe((2 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(3, 'x---')).toBe((3 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(0, 'x---')).toBe((0 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(1, 'x---')).toBe((1 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(2, 'x---')).toBe((2 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(3, 'x---')).toBe((3 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
     });
 
     test('subdivisions of 5', () => {
-      expect(widget.calculateRotationForCell(0, 'x--x-')).toBe((0 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(1, 'x--x-')).toBe((1 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(2, 'x--x-')).toBe((2 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(3, 'x--x-')).toBe((3 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
-      expect(widget.calculateRotationForCell(4, 'x--x-')).toBe((4 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(0, 'x--x-')).toBe((0 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(1, 'x--x-')).toBe((1 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(2, 'x--x-')).toBe((2 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(3, 'x--x-')).toBe((3 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
+      expect(widget.calculateRotationForCell(4, 'x--x-')).toBe((4 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP);
     });
   });
 
@@ -32,19 +32,19 @@ describe('widget', () => {
 
     test('subdivisions of 4', () => {
       const OFFSET_FROM_CELL_BY_HALF = Math.PI * SUBDIVIDE_BY_FOUR;
-      expect(widget.calculateRotationForInsertZone(0, 'x---')).toBe((0 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(1, 'x---')).toBe((1 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(2, 'x---')).toBe((2 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(3, 'x---')).toBe((3 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(0, 'x---')).toBe((0 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(1, 'x---')).toBe((1 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(2, 'x---')).toBe((2 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(3, 'x---')).toBe((3 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FOUR) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
     });
 
     test('subdivisions of 5', () => {
       const OFFSET_FROM_CELL_BY_HALF = Math.PI * SUBDIVIDE_BY_FIVE;
-      expect(widget.calculateRotationForInsertZone(0, 'x--x-')).toBe((0 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(1, 'x--x-')).toBe((1 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(2, 'x--x-')).toBe((2 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(3, 'x--x-')).toBe((3 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
-      expect(widget.calculateRotationForInsertZone(4, 'x--x-')).toBe((4 * FULL_CIRCUMFERENCE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(0, 'x--x-')).toBe((0 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(1, 'x--x-')).toBe((1 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(2, 'x--x-')).toBe((2 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(3, 'x--x-')).toBe((3 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
+      expect(widget.calculateRotationForInsertZone(4, 'x--x-')).toBe((4 * RADIANS_PER_CIRCLE * SUBDIVIDE_BY_FIVE) + RING_ROTATION_OFFSET_TO_START_AT_TOP + OFFSET_FROM_CELL_BY_HALF);
     });
   });
 
@@ -52,13 +52,15 @@ describe('widget', () => {
     const widget = require('../../src/models/widget').default;
 
     test('rhythm of length 4', () => {
-      const WIDGET_CIRCUMFERENCE = Math.PI * WIDGET_DIAMETER;
-      expect(widget.calculateScaleForInsertZone('x---')).toBe((WIDGET_CIRCUMFERENCE - (4 * CELL_DIAMETER)) / 4);
+      const angle = (2 * Math.PI) / 4;
+      const expectedScale = (2 * (WIDGET_DIAMETER / 2) * Math.sin(angle / 2)) - CELL_DIAMETER;
+      expect(widget.calculateScaleForInsertZone('x---')).toBe(expectedScale);
     });
 
     test('rhythm of length 5', () => {
-      const WIDGET_CIRCUMFERENCE = Math.PI * WIDGET_DIAMETER;
-      expect(widget.calculateScaleForInsertZone('x--x-')).toBe((WIDGET_CIRCUMFERENCE - (5 * CELL_DIAMETER)) / 5);
+      const angle = (2 * Math.PI) / 5;
+      const expectedScale = (2 * (WIDGET_DIAMETER / 2) * Math.sin(angle / 2)) - CELL_DIAMETER;
+      expect(widget.calculateScaleForInsertZone('x--x-')).toBe(expectedScale);
     });
   });
 

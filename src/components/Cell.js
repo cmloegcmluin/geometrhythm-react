@@ -1,40 +1,58 @@
 import React from 'react';
 import widget from '../models/widget';
-import { CELL_DIAMETER, WIDGET_DIAMETER } from '../constants';
+import { CELL_DIAMETER, CELL_ORIGIN_OFFSET } from '../constants';
 
-const getStyle = (rhythm, index) => {
+const getDivProps = ({ rhythm, index, flipCell }) => {
   const rotation = widget.calculateRotationForCell(index, rhythm);
 
   return {
-    transform: `rotate(${rotation}rad)`,
-    transformOrigin: `${WIDGET_DIAMETER / 2}px ${WIDGET_DIAMETER / 2}px`,
-    position: 'absolute',
-    width: `${CELL_DIAMETER}px`,
-    height: `${CELL_DIAMETER}px`,
-    cursor: 'pointer',
-    transition: 'transform 1s',
+    onClick: () => flipCell(rhythm, index),
+    style: {
+      transform: `rotate(${rotation}rad)`,
+      transformOrigin: `${CELL_ORIGIN_OFFSET}px ${CELL_ORIGIN_OFFSET}px`,
+      position: 'absolute',
+      width: `${CELL_DIAMETER}px`,
+      height: `${CELL_DIAMETER}px`,
+      pointerEvents: 'none',
+      transition: 'transform 1s',
+    },
   };
 };
 
 const getSvgProps = (isOnset) => {
   return {
-    viewBox: '0 0 20 20',
+    viewBox: `0 0 ${CELL_DIAMETER} ${CELL_DIAMETER}`,
     stroke: 'black',
     fill: isOnset ? 'black' : 'white',
+    style: {
+      position: 'absolute',
+      right: `${CELL_DIAMETER / 2}px`,
+      bottom: `${CELL_DIAMETER / 2}px`,
+    },
+  };
+};
+
+const getCircleSvgProps = () => {
+  return {
+    cx: CELL_DIAMETER / 2,
+    cy: CELL_DIAMETER / 2,
+    r: CELL_DIAMETER / 2,
+    style: {
+      pointerEvents: 'all',
+      cursor: 'pointer',
+    },
   };
 };
 
 export default ({ rhythm, isOnset, index, flipCell }) => {
-  const onClick = () => flipCell(rhythm, index);
-
-  const style = getStyle(rhythm, index);
-
+  const divProps = getDivProps({ rhythm, index, flipCell });
   const svgProps = getSvgProps(isOnset);
+  const circleSvgProps = getCircleSvgProps();
 
   return (
-    <div {...{ onClick, style }} >
+    <div {...divProps}>
       <svg {...svgProps}>
-        <circle {...{ cx: 10, cy: 10, r: 10 }} />
+        <circle {...circleSvgProps} />
       </svg>
     </div>
   );
