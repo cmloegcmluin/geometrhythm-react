@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 beforeEach(() => jest.resetModules());
 
 describe('index', () => {

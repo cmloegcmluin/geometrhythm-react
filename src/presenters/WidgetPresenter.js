@@ -52,7 +52,7 @@ const WidgetPresenter = ({ rhythm, flipCell, insertCell, reactKeys }) => {
   );
 };
 
-WidgetPresenter.PropTypes = {
+WidgetPresenter.propTypes = {
   rhythm: PropTypes.string,
 };
 
